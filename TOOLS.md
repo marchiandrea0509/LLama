@@ -38,7 +38,9 @@ Things like:
 - `scripts/get_llama_room_status.ps1` — concise status for the `#llama` Discord room session
 - `scripts/get_pine_screener_status.ps1` — prints only the latest local Pine screener text table, or `Pine screener unavailable.`
 - `scripts/run_pine_screener_export.ps1` — reruns `workspace\\tradingview\\scripts\\pine_screener_export.js` and returns only the fresh text table, or `Pine screener export failed.`
+- `scripts/run_pine_screener_with_winner_shots.ps1` — reruns the screener, selects the top winner, captures 4H + 1D screenshots, and writes a manifest under `artifacts\\pine_screener_winner\\`
 - `workspace\\tradingview\\scripts\\pine_screener_export.js` — full TradingView Pine Screener export pipeline (CSV/JSON/PNG/MD/TXT artifacts)
+- `workspace\\tradingview\\scripts\\capture_live.js` — captures a live TradingView chart screenshot for a chosen symbol/timeframe
 - `TASKBOOK.md` — known task playbook; read this when a request matches a repeatable task
 
 ## Why Separate?

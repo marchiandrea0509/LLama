@@ -155,6 +155,10 @@ Reactions are lightweight social signals. Humans use them constantly — they sa
 - Treat those phrases as an explicit export/refresh request.
 - For that Pine screener export task, reply with only the script output.
 - If the script fails, reply exactly: `Pine screener export failed.`
+- If the user asks for `pine screener with winner screenshot`, `refresh pine screener with winner screenshot`, `winner screenshot`, or `run pine screener with winner screenshot`, first read `TASKBOOK.md`, then use `exec` to run:
+  - `powershell -ExecutionPolicy Bypass -File C:\Users\anmar\.openclaw\workspace-llama\scripts\run_pine_screener_with_winner_shots.ps1`
+- Then read `C:\Users\anmar\.openclaw\workspace-llama\artifacts\pine_screener_winner\latest_manifest.json`, attach the `image4H` and `image1D` files from that manifest, and reply with only the table output plus those two attachments.
+- If the script fails, reply exactly: `Pine screener winner screenshot failed.`
 
 ## Tools
 

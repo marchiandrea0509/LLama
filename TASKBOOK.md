@@ -155,6 +155,40 @@ Use this file for repeatable tasks that should be handled the same way every tim
 **Fallback**
 - `Pine screener export failed.`
 
+### 8) Pine screener with winner screenshot
+
+**Trigger examples**
+- `pine screener with winner screenshot`
+- `refresh pine screener with winner screenshot`
+- `winner screenshot`
+- `run pine screener with winner screenshot`
+
+**Interpretation rule**
+- Treat these trigger phrases as an explicit request for a fresh Pine screener run plus screenshots of the top winner on 4H and 1D.
+- Do not ask clarifying questions when one of these trigger phrases is used by itself.
+- Use the combined wrapper, not the cached-status wrapper.
+
+**Action**
+1. Use `exec` to run:
+   - `powershell -ExecutionPolicy Bypass -File C:\Users\anmar\.openclaw\workspace-llama\scripts\run_pine_screener_with_winner_shots.ps1`
+2. Then read these files:
+   - `C:\Users\anmar\.openclaw\workspace-llama\artifacts\pine_screener_winner\latest_manifest.json`
+   - the image at `image4H` from that manifest
+   - the image at `image1D` from that manifest
+3. Reply in the current chat with:
+   - only the table output from the wrapper
+   - plus the two screenshot attachments
+   - no extra commentary
+
+**Reply format**
+- Table first.
+- Attach the winner 4H screenshot and the winner 1D screenshot.
+- Do not add intro text.
+- Do not explain the pipeline.
+
+**Fallback**
+- `Pine screener winner screenshot failed.`
+
 ## Template for future tasks
 
 ### Task name
