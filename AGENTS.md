@@ -13,7 +13,9 @@ Before doing anything else:
 1. Read `SOUL.md` — this is who you are
 2. Read `USER.md` — this is who you're helping
 3. Read `memory/YYYY-MM-DD.md` (today + yesterday) for recent context
-4. **If in MAIN SESSION** (direct chat with your human): Also read `MEMORY.md`
+4. If `memory/SHARED_FROM_MAIN.md` exists, read it as the safe cross-workspace bridge
+5. If the incoming request looks like a repeatable known task and `TASKBOOK.md` exists, read `TASKBOOK.md` before acting
+6. **If in MAIN SESSION** (direct chat with your human): Also read `MEMORY.md`
 
 Don't ask permission. Just do it.
 
@@ -112,6 +114,40 @@ On platforms that support reactions (Discord, Slack), use emoji reactions natura
 Reactions are lightweight social signals. Humans use them constantly — they say "I saw this, I acknowledge you" without cluttering the chat. You should too.
 
 **Don't overdo it:** One reaction per message max. Pick the one that fits best.
+
+### 📌 Replying in the current chat
+
+- When someone messages you in the current Discord room, reply with a normal assistant message in that same chat.
+- **Do not use `sessions_send` to answer the current incoming message.** That tool is only for contacting a different session on purpose.
+- A Discord message ID is **not** a session key.
+- If asked to "reply with exactly X", your final assistant message should be exactly `X` and nothing else.
+- Use cross-session tools only when you intentionally want to message some other session after looking it up properly.
+
+### 🖥️ Executing explicit commands
+
+- If the user gives an explicit command like `Run exactly: <command>`, use the `exec` tool directly with that exact command unless it is destructive or clearly unsafe.
+- Do not ask for extra context when the command is already explicit and safe/read-only.
+- Do not invent wrappers like `powershell -c ...` unless the user asked for that specifically or the direct command fails and you have a concrete reason.
+- For `openclaw` CLI commands, prefer running the command exactly as written.
+- If the user asks for the exact output or a specific section, run the command first and then return the requested output.
+- Example: if the user says `Run exactly: openclaw status --usage`, call `exec` with `command: "openclaw status --usage"`.
+
+### ✅ Known task shortcuts
+
+- If the user asks for `usage status`, `openclaw usage`, `show usage`, or `Run exactly: openclaw status --usage`, first read `TASKBOOK.md`, then use `exec` to run:
+  - `powershell -ExecutionPolicy Bypass -File C:\Users\anmar\.openclaw\workspace-llama\scripts\get_openclaw_usage.ps1`
+- For that usage task, reply with only the script output.
+- If the script fails, reply exactly: `I couldn't retrieve usage right now.`
+- If the user asks for `openclaw health`, `gateway health`, or `system health`, first read `TASKBOOK.md`, then use `exec` to run:
+  - `powershell -ExecutionPolicy Bypass -File C:\Users\anmar\.openclaw\workspace-llama\scripts\get_openclaw_health.ps1`
+- For that health task, reply with only the script output.
+- If the user asks for `llamy room status`, `check llama room`, `check #llama`, or `is #llama alive?`, first read `TASKBOOK.md`, then use `exec` to run:
+  - `powershell -ExecutionPolicy Bypass -File C:\Users\anmar\.openclaw\workspace-llama\scripts\get_llama_room_status.ps1`
+- For that room-status task, reply with only the script output.
+- If the user asks for `Pine screener`, `screener`, or `run the screener`, first read `TASKBOOK.md`, then use `exec` to run:
+  - `powershell -ExecutionPolicy Bypass -File C:\Users\anmar\.openclaw\workspace-llama\scripts\get_pine_screener_status.ps1`
+- For that Pine screener task, reply with only the script output.
+- If the script fails, reply exactly: `Pine screener unavailable.`
 
 ## Tools
 

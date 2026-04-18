@@ -31,6 +31,14 @@ Things like:
 - Default speaker: Kitchen HomePod
 ```
 
+## Llamy helper scripts
+
+- `scripts/get_openclaw_usage.ps1` — returns only the `Usage` block from `openclaw status --usage`
+- `scripts/get_openclaw_health.ps1` — compact OpenClaw health summary from `openclaw status --json`
+- `scripts/get_llama_room_status.ps1` — concise status for the `#llama` Discord room session
+- `scripts/get_pine_screener_status.ps1` — prints only the latest local Pine screener text table, or `Pine screener unavailable.`
+- `TASKBOOK.md` — known task playbook; read this when a request matches a repeatable task
+
 ## Why Separate?
 
 Skills are shared. Your setup is yours. Keeping them apart means you can update skills without losing your notes, and share skills without leaking your infrastructure.
