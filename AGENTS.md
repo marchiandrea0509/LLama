@@ -157,7 +157,9 @@ Reactions are lightweight social signals. Humans use them constantly — they sa
 - If the script fails, reply exactly: `Pine screener export failed.`
 - If the user asks for `pine screener with winner screenshot`, `refresh pine screener with winner screenshot`, `winner screenshot`, or `run pine screener with winner screenshot`, first read `TASKBOOK.md`, then use `exec` to run:
   - `powershell -ExecutionPolicy Bypass -File C:\Users\anmar\.openclaw\workspace-llama\scripts\run_pine_screener_with_winner_shots.ps1`
-- Then read `C:\Users\anmar\.openclaw\workspace-llama\artifacts\pine_screener_winner\latest_manifest.json`, attach the `image4H` and `image1D` files from that manifest, and reply with only the table output plus those two attachments.
+- Then read `C:\Users\anmar\.openclaw\workspace-llama\artifacts\pine_screener_winner\latest_manifest.json`, then use `read` on the `image4H` and `image1D` files from that manifest so they become real attachments in the current turn.
+- For that task, the text reply body must be only the table output. Do not add labels like `Winner:` or `Attached:`.
+- If you did not successfully `read` both image files in the same turn, do not claim they are attached; reply exactly: `Pine screener winner screenshot failed.`
 - If the script fails, reply exactly: `Pine screener winner screenshot failed.`
 
 ## Tools

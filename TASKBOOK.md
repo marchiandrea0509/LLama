@@ -175,16 +175,19 @@ Use this file for repeatable tasks that should be handled the same way every tim
    - `C:\Users\anmar\.openclaw\workspace-llama\artifacts\pine_screener_winner\latest_manifest.json`
    - the image at `image4H` from that manifest
    - the image at `image1D` from that manifest
-3. Reply in the current chat with:
+3. Use `read` on the two image paths from the manifest in the same turn so they become real message attachments.
+4. Reply in the current chat with:
    - only the table output from the wrapper
-   - plus the two screenshot attachments
+   - plus the two screenshot attachments from those `read` calls
    - no extra commentary
 
 **Reply format**
-- Table first.
-- Attach the winner 4H screenshot and the winner 1D screenshot.
+- The text body must be only the table.
+- Attach the winner 4H screenshot and the winner 1D screenshot via `read`.
 - Do not add intro text.
+- Do not add labels like `Winner:` or `Attached:`.
 - Do not explain the pipeline.
+- If you did not successfully `read` both image files in the same turn, do not claim they are attached.
 
 **Fallback**
 - `Pine screener winner screenshot failed.`
