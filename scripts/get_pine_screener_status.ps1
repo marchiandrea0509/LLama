@@ -1,6 +1,8 @@
 $ErrorActionPreference = 'Stop'
 
 $FailureLine = 'Pine screener unavailable.'
+$StaleLine = 'Pine screener stale. Run refresh pine screener.'
+$MaxAgeMinutes = 60
 $ReportDir = 'C:\Users\anmar\.openclaw\workspace\tradingview\reports\pine_screener'
 
 try {
@@ -14,6 +16,12 @@ try {
 
     if (-not $latest) {
         throw 'No Pine screener text report found'
+    }
+
+    $ageMinutes = ((Get-Date).ToUniversalTime() - $latest.LastWriteTimeUtc).TotalMinutes
+    if ($ageMinutes -gt $MaxAgeMinutes) {
+        $StaleLine
+        exit 0
     }
 
     $content = Get-Content $latest.FullName -Raw

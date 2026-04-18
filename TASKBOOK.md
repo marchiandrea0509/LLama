@@ -112,6 +112,7 @@ Use this file for repeatable tasks that should be handled the same way every tim
 - Do **not** ask clarifying questions when one of these trigger phrases is used by itself.
 - Assume the user wants the latest available local screener table immediately.
 - For these plain trigger phrases, prefer the latest cached/local result over rerunning the export.
+- If the latest cached/local result is older than 1 hour, do not print the stale table; reply exactly: `Pine screener stale. Run refresh pine screener.`
 
 **Action**
 - Use `exec` to run:
@@ -124,7 +125,8 @@ Use this file for repeatable tasks that should be handled the same way every tim
 - Do not explain what the screener is.
 
 **Fallback**
-- `Pine screener unavailable.`
+- `Pine screener stale. Run refresh pine screener.` when the latest local report is older than 1 hour
+- `Pine screener unavailable.` when no usable local report exists
 
 ### 7) Pine screener export / refresh
 
