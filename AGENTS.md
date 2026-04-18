@@ -147,8 +147,13 @@ Reactions are lightweight social signals. Humans use them constantly — they sa
 - If the user asks for `Pine screener`, `screener`, or `run the screener`, first read `TASKBOOK.md`, then use `exec` to run:
   - `powershell -ExecutionPolicy Bypass -File C:\Users\anmar\.openclaw\workspace-llama\scripts\get_pine_screener_status.ps1`
 - Treat those phrases as an immediate status lookup, not as a request to build or explain a screener.
-- For that Pine screener task, reply with only the script output.
+- For that Pine screener status task, reply with only the script output.
 - If the script fails, reply exactly: `Pine screener unavailable.`
+- If the user asks for `refresh pine screener`, `rerun pine screener`, `run pine screener export`, `export pine screener`, or `update pine screener`, first read `TASKBOOK.md`, then use `exec` to run:
+  - `powershell -ExecutionPolicy Bypass -File C:\Users\anmar\.openclaw\workspace-llama\scripts\run_pine_screener_export.ps1`
+- Treat those phrases as an explicit export/refresh request.
+- For that Pine screener export task, reply with only the script output.
+- If the script fails, reply exactly: `Pine screener export failed.`
 
 ## Tools
 

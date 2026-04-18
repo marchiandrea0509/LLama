@@ -111,6 +111,7 @@ Use this file for repeatable tasks that should be handled the same way every tim
 - Do **not** reinterpret them as a request to build, design, or explain a TradingView/Pine Script screener.
 - Do **not** ask clarifying questions when one of these trigger phrases is used by itself.
 - Assume the user wants the latest available local screener table immediately.
+- For these plain trigger phrases, prefer the latest cached/local result over rerunning the export.
 
 **Action**
 - Use `exec` to run:
@@ -124,6 +125,33 @@ Use this file for repeatable tasks that should be handled the same way every tim
 
 **Fallback**
 - `Pine screener unavailable.`
+
+### 7) Pine screener export / refresh
+
+**Trigger examples**
+- `refresh pine screener`
+- `rerun pine screener`
+- `run pine screener export`
+- `export pine screener`
+- `update pine screener`
+
+**Interpretation rule**
+- Treat these trigger phrases as an explicit request to rerun the local TradingView export pipeline.
+- Use the export wrapper, not the cached-status wrapper.
+- Do not ask clarifying questions when one of these trigger phrases is used by itself.
+
+**Action**
+- Use `exec` to run:
+  - `powershell -ExecutionPolicy Bypass -File C:\Users\anmar\.openclaw\workspace-llama\scripts\run_pine_screener_export.ps1`
+
+**Reply format**
+- Return only the resulting table output from the fresh export.
+- Do not add intro text.
+- Do not summarize the table.
+- Do not explain the export pipeline.
+
+**Fallback**
+- `Pine screener export failed.`
 
 ## Template for future tasks
 
