@@ -192,6 +192,35 @@ Use this file for repeatable tasks that should be handled the same way every tim
 **Fallback**
 - `Pine screener winner screenshot failed.`
 
+### 9) Winner screenshots only
+
+**Trigger examples**
+- `show winner screenshots`
+- `winner screenshots only`
+- `attach winner screenshots`
+- `show the winner screenshots`
+
+**Interpretation rule**
+- Treat these trigger phrases as a request to attach only the latest winner screenshots from the most recent successful screener-with-screenshots run.
+- Do not rerun the screener.
+- Do not add summary text.
+
+**Action**
+1. Use `exec` to run:
+   - `powershell -ExecutionPolicy Bypass -File C:\Users\anmar\.openclaw\workspace-llama\scripts\get_latest_winner_screenshots.ps1`
+2. Parse the JSON output.
+3. Use `read` on `image4H` and `image1D` in the same turn.
+4. Reply with only a minimal caption:
+   - `<winner> 4H and 1D`
+
+**Reply format**
+- Attach only the two images.
+- Keep the text body minimal.
+- Do not claim attachments unless both `read` calls succeeded.
+
+**Fallback**
+- `Winner screenshots unavailable.`
+
 ## Template for future tasks
 
 ### Task name
