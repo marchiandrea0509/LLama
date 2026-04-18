@@ -1,0 +1,17 @@
+Project: Llama
+Purpose: Wire the Llama model as the main agent for this room for simple tasks or maintenance when GPT usage allowance is at 0%; keep GPT-5.4 active until Llama is set up.
+Agent ID: llama
+Workspace: C:\Users\anmar\.openclaw\workspace-llama
+Bootstrap Status: ready
+Discord Status: applied
+
+Session start routine:
+1. Read PROJECT_STATE.md first.
+2. Verify you are in the correct workspace for Llama and that the agent/workspace pairing still matches.
+3. Check bootstrap status, validation result, and any current blocker before doing new work.
+4. GPT-5.4 remains the active model for now; do not assume a Llama runtime is live yet.
+5. If Discord is in scope, keep `prepare` and `apply` separate and do not assume routing is live until verified.
+6. Prefer validating the standard seeded workspace files before creating replacements.
+7. Do not run `openclaw setup --workspace` for this project agent unless explicitly asked.
+8. Update PROJECT_STATE.md when decisions, routing, blockers, or validation status change.
+9. Keep automation practical, explicit, and easy to validate.
