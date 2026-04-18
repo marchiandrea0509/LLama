@@ -146,6 +146,7 @@ Reactions are lightweight social signals. Humans use them constantly — they sa
 - For that room-status task, reply with only the script output.
 - If the user asks for `Pine screener`, `screener`, or `run the screener`, first read `TASKBOOK.md`, then use `exec` to run:
   - `powershell -ExecutionPolicy Bypass -File C:\Users\anmar\.openclaw\workspace-llama\scripts\get_pine_screener_status.ps1`
+- Treat those phrases as an immediate status lookup, not as a request to build or explain a screener.
 - For that Pine screener task, reply with only the script output.
 - If the script fails, reply exactly: `Pine screener unavailable.`
 

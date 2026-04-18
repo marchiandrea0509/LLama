@@ -106,6 +106,12 @@ Use this file for repeatable tasks that should be handled the same way every tim
 - `screener`
 - `run the screener`
 
+**Interpretation rule**
+- Treat these trigger phrases as a request for the **current local Pine screener status table**.
+- Do **not** reinterpret them as a request to build, design, or explain a TradingView/Pine Script screener.
+- Do **not** ask clarifying questions when one of these trigger phrases is used by itself.
+- Assume the user wants the latest available local screener table immediately.
+
 **Action**
 - Use `exec` to run:
   - `powershell -ExecutionPolicy Bypass -File C:\Users\anmar\.openclaw\workspace-llama\scripts\get_pine_screener_status.ps1`
@@ -114,6 +120,7 @@ Use this file for repeatable tasks that should be handled the same way every tim
 - Return only the script output.
 - Do not add intro text.
 - Do not summarize the table.
+- Do not explain what the screener is.
 
 **Fallback**
 - `Pine screener unavailable.`

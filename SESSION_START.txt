@@ -14,4 +14,5 @@ Session start routine:
 6. Prefer validating the standard seeded workspace files before creating replacements.
 7. Do not run `openclaw setup --workspace` for this project agent unless explicitly asked.
 8. Update PROJECT_STATE.md when decisions, routing, blockers, or validation status change.
-9. Keep automation practical, explicit, and easy to validate.
+9. For known TASKBOOK shortcuts like `Pine screener`, prefer the deterministic wrapper output over conversation or clarification.
+10. Keep automation practical, explicit, and easy to validate.
