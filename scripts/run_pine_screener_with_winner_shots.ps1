@@ -11,6 +11,9 @@ $LatestTablePath = Join-Path $ArtifactDir 'latest_table.txt'
 $ManifestPath = Join-Path $ArtifactDir 'latest_manifest.json'
 $PreferredLayout = 'Openclaw-structure'
 $PreferredChartUrl = 'https://www.tradingview.com/chart/0ZPSKaZ4/'
+$SourceProfileDir = Join-Path $TvRoot 'profile'
+$CaptureProfileName = 'profile-llama-capture'
+$CaptureProfileDir = Join-Path $TvRoot $CaptureProfileName
 
 function Get-NodePath {
     $cmd = Get-Command node -ErrorAction SilentlyContinue
@@ -58,6 +61,16 @@ function Invoke-NodeWithTimeout {
     }
 }
 
+function Ensure-CaptureProfile {
+    if (Test-Path $CaptureProfileDir) {
+        return
+    }
+    if (-not (Test-Path $SourceProfileDir)) {
+        throw "Source TradingView profile not found: $SourceProfileDir"
+    }
+    Copy-Item -Path $SourceProfileDir -Destination $CaptureProfileDir -Recurse -Force
+}
+
 function Try-RunExport {
     $result = Invoke-NodeWithTimeout -ScriptPath $ExportScript -Arguments @() -TimeoutSeconds 240
     if ($result.ExitCode -eq 0) {
@@ -74,7 +87,7 @@ function Try-Capture {
     )
 
     $started = Get-Date
-    $result = Invoke-NodeWithTimeout -ScriptPath $CaptureScript -Arguments @('--symbol', $Winner, '--timeframe', $Timeframe, '--outdir', $ArtifactDir, '--log', $LogPath, '--layout', $PreferredLayout, '--chartUrl', $PreferredChartUrl) -TimeoutSeconds 180
+    $result = Invoke-NodeWithTimeout -ScriptPath $CaptureScript -Arguments @('--symbol', $Winner, '--timeframe', $Timeframe, '--outdir', $ArtifactDir, '--log', $LogPath, '--layout', $PreferredLayout, '--chartUrl', $PreferredChartUrl, '--profile', $CaptureProfileName) -TimeoutSeconds 180
 
     if ((Test-Path $ExpectedImagePath) -and ((Get-Item $ExpectedImagePath).LastWriteTime -ge $started.AddSeconds(-2))) {
         return $true
@@ -96,6 +109,8 @@ try {
     if (-not (Test-Path $CaptureScript)) {
         throw "Capture script not found: $CaptureScript"
     }
+
+    Ensure-CaptureProfile
 
     $exportOk = $false
     for ($i = 0; $i -lt 2 -and -not $exportOk; $i++) {
