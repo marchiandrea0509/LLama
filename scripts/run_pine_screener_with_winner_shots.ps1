@@ -132,8 +132,9 @@ try {
 
     Copy-Item -Path $textPath -Destination $LatestTablePath -Force
 
-    $image4H = Join-Path $ArtifactDir ($winner + '_4H.png')
-    $image1D = Join-Path $ArtifactDir ($winner + '_1D.png')
+    $layoutSuffix = '_' + ($PreferredLayout -replace '[^a-zA-Z0-9-_]', '-')
+    $image4H = Join-Path $ArtifactDir ($winner + '_4H' + $layoutSuffix + '.png')
+    $image1D = Join-Path $ArtifactDir ($winner + '_1D' + $layoutSuffix + '.png')
 
     $capture4HOk = $false
     for ($i = 0; $i -lt 2 -and -not $capture4HOk; $i++) {
