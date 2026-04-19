@@ -166,8 +166,11 @@ Reactions are lightweight social signals. Humans use them constantly — they sa
 - Treat those phrases as an explicit export/refresh request.
 - For that Pine screener export task, reply with only the script output.
 - If the script fails, reply exactly: `Pine screener export failed.`
-- If the user asks for `pine screener with winner screenshot`, `refresh pine screener with winner screenshot`, `winner screenshot`, or `run pine screener with winner screenshot`, first read `TASKBOOK.md`, then use `exec` to run:
+- If the user asks for `pine screener with winner screenshot`, `refresh pine screener with winner screenshot`, `winner screenshot`, or `run pine screener with winner screenshot`, first read `TASKBOOK.md`.
+- If the trigger explicitly says `refresh pine screener with winner screenshot`, use `exec` to run:
   - `powershell -ExecutionPolicy Bypass -File C:\Users\anmar\.openclaw\workspace-llama\scripts\run_pine_screener_with_winner_shots.ps1`
+- Otherwise use `exec` to run:
+  - `powershell -ExecutionPolicy Bypass -File C:\Users\anmar\.openclaw\workspace-llama\scripts\get_pine_screener_with_winner_shots_status.ps1`
 - Then use `exec` to run:
   - `powershell -ExecutionPolicy Bypass -File C:\Users\anmar\.openclaw\workspace-llama\scripts\get_latest_winner_media_refs.ps1`
 - For that task, the text reply body must be only the table output followed by the two `MEDIA:./...` lines from that helper. Do not add labels like `Winner:` or `Attached:`.

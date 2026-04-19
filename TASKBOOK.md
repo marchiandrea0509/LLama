@@ -167,14 +167,17 @@ Use this file for repeatable tasks that should be handled the same way every tim
 - `run pine screener with winner screenshot`
 
 **Interpretation rule**
-- Treat these trigger phrases as an explicit request for a fresh Pine screener run plus screenshots of the top winner on 4H and 1D.
+- Treat these trigger phrases as a request for Pine screener output plus winner screenshots on 4H and 1D.
 - Do not ask clarifying questions when one of these trigger phrases is used by itself.
-- Use the combined wrapper, not the cached-status wrapper.
+- For the plain phrase `pine screener with winner screenshot`, prefer the latest good local winner artifacts if they are fresh enough.
+- For the explicit phrase `refresh pine screener with winner screenshot`, force a fresh rerun.
 
 **Action**
-1. Use `exec` to run:
+1. If the trigger is `refresh pine screener with winner screenshot`, use `exec` to run:
    - `powershell -ExecutionPolicy Bypass -File C:\Users\anmar\.openclaw\workspace-llama\scripts\run_pine_screener_with_winner_shots.ps1`
-2. Then use `exec` to run:
+2. Otherwise use `exec` to run:
+   - `powershell -ExecutionPolicy Bypass -File C:\Users\anmar\.openclaw\workspace-llama\scripts\get_pine_screener_with_winner_shots_status.ps1`
+3. Then use `exec` to run:
    - `powershell -ExecutionPolicy Bypass -File C:\Users\anmar\.openclaw\workspace-llama\scripts\get_latest_winner_media_refs.ps1`
 3. Parse the JSON output.
 4. Reply in the current chat with:
