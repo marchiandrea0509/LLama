@@ -148,12 +148,13 @@ Use this file when you want to remember:
 - `run pine screener with winner screenshot`
 
 **What it does**
-- Runs a fresh Pine screener export.
-- Detects the top winner.
-- Produces winner screenshots for:
+- Uses the latest good local winner package if one already exists.
+- Detects the stored top winner.
+- Provides winner screenshots for:
   - 4H
   - 1D
 - Returns the screener table plus media paths for those screenshots.
+- Use the explicit refresh variant when you want a forced new rerun.
 
 **Reply style**
 - Table first.

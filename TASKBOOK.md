@@ -169,7 +169,7 @@ Use this file for repeatable tasks that should be handled the same way every tim
 **Interpretation rule**
 - Treat these trigger phrases as a request for Pine screener output plus winner screenshots on 4H and 1D.
 - Do not ask clarifying questions when one of these trigger phrases is used by itself.
-- For the plain phrase `pine screener with winner screenshot`, prefer the latest good local winner artifacts if they are fresh enough.
+- For the plain phrase `pine screener with winner screenshot`, prefer the latest good local winner artifacts whenever they exist.
 - For the explicit phrase `refresh pine screener with winner screenshot`, force a fresh rerun.
 
 **Action**
