@@ -149,6 +149,7 @@ Use this file when you want to remember:
 
 **What it does**
 - Uses the latest good local winner package if one already exists.
+- The cached package is only considered valid when it is tagged with the `Openclaw-structure` layout.
 - Detects the stored top winner.
 - Provides winner screenshots for:
   - 4H

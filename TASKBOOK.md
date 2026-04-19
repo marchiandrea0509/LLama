@@ -170,6 +170,7 @@ Use this file for repeatable tasks that should be handled the same way every tim
 - Treat these trigger phrases as a request for Pine screener output plus winner screenshots on 4H and 1D.
 - Do not ask clarifying questions when one of these trigger phrases is used by itself.
 - For the plain phrase `pine screener with winner screenshot`, prefer the latest good local winner artifacts whenever they exist.
+- A cached winner package is only valid if its manifest explicitly says `layout = Openclaw-structure`.
 - For the explicit phrase `refresh pine screener with winner screenshot`, force a fresh rerun.
 
 **Action**

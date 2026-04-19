@@ -7,7 +7,7 @@ Do exactly this:
    `llama does not respond`
    and stop.
 3. Run:
-   `powershell -ExecutionPolicy Bypass -File C:\Users\anmar\.openclaw\workspace-llama\scripts\run_pine_screener_with_winner_shots.ps1`
+   `powershell -ExecutionPolicy Bypass -File C:\Users\anmar\.openclaw\workspace-llama\scripts\get_pine_screener_with_winner_shots_status.ps1`
 4. If that command fails, reply with exactly:
    `llama does not respond`
    and stop.

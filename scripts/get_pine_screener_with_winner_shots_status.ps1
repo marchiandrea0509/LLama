@@ -10,8 +10,13 @@ try {
 
     if (Test-Path $ManifestPath) {
         $manifest = Get-Content $ManifestPath -Raw | ConvertFrom-Json
-        if ($manifest.tablePath -and $manifest.image4H -and $manifest.image1D) {
-            if ((Test-Path $manifest.tablePath) -and (Test-Path $manifest.image4H) -and (Test-Path $manifest.image1D)) {
+        if ($manifest.tablePath -and $manifest.image4H -and $manifest.image1D -and $manifest.layout) {
+            if (
+                ([string]$manifest.layout -eq 'Openclaw-structure') -and
+                (Test-Path $manifest.tablePath) -and
+                (Test-Path $manifest.image4H) -and
+                (Test-Path $manifest.image1D)
+            ) {
                 $hasUsableCache = $true
                 $tablePath = [string]$manifest.tablePath
             }
