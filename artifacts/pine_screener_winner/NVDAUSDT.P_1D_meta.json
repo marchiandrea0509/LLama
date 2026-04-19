@@ -1,0 +1,22 @@
+{
+  "capturedAt": "2026-04-19T14:39:19.047Z",
+  "symbol": "NVDAUSDT.P",
+  "timeframe": "1D",
+  "layout": "default",
+  "preset": "standard",
+  "width": 1600,
+  "height": 1000,
+  "scale": 1,
+  "fixedZoom": true,
+  "profile": "profile",
+  "ready": false,
+  "url": "https://www.tradingview.com/chart/?symbol=NVDAUSDT.P&interval=1D",
+  "shotPath": "C:\\Users\\anmar\\.openclaw\\workspace-llama\\artifacts\\pine_screener_winner\\NVDAUSDT.P_1D.png",
+  "panelPath": null,
+  "market": {
+    "title": "NVDAUSDT.P 200.03 ▲ +0.4% Startegy test",
+    "symbol": "NVDAUSDT.P",
+    "price": 200.03,
+    "changePct": 0.4
+  }
+}

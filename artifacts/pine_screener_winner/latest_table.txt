@@ -1,62 +1,62 @@
 Top 5 by 03 Best Score (4H)
-TV Column                  | #1 INTCUSDT.P | #2 NVDAUSDT.P | #3 ARMUSDT.P | #4 TSLAUSDT.P | #5 MRVLUSDT.P
----------------------------+---------------+---------------+--------------+---------------+--------------
-01 Signal Dir              | 1             | 0             | 0            | 0             | 0            
-02 Best Setup Code         | 2             | 2             | 2            | 2             | 2            
-03 Best Score              | 69.1          | 68.3          | 67.6         | 66.7          | 66.2         
-04 Final Long Score        | 69.1          | 68.3          | 67.6         | 66.7          | 66.2         
-05 Final Short Score       | 19.6          | 19.2          | 23.4         | 23.4          | 25.5         
-06 Long Continuation       | 77.1          | 78.3          | 77.6         | 74.7          | 76.2         
-07 Short Continuation      | 36.4          | 37.9          | 36.1         | 36.6          | 36.1         
-08 Long MeanRev            | 45.7          | 48.0          | 41.8         | 41.3          | 39.7         
-09 Short MeanRev           | 47.6          | 47.2          | 51.4         | 55.4          | 53.5         
-10 Conviction State        | 2             | 2             | 2            | 2             | 2            
-11 Trend Dir               | 1             | 1             | 1            | 1             | 1            
-12 Macro Dir 1D            | 1             | 1             | 1            | 0             | 1            
-13 Position State          | 0             | 0             | 0            | 0             | 0            
-14 Breakout Dir            | 0             | 0             | 0            | 0             | 0            
-15 Retest Dir              | 0             | 0             | 0            | 0             | 0            
-16 ADX                     | 34.4          | 36.8          | 44.8         | 43.3          | 32.2         
-17 Rel Volume              | 0.153         | 0.066         | 0.096        | 0.041         | 0.126        
-18 Dist Fast EMA ATR       | 0.507         | 0.482         | 0.871        | 1.17          | 1.26         
-19 Sweep Dir               | 0             | 0             | 0            | 0             | 0            
-20 Displacement Dir        | 0             | 0             | 0            | 0             | 0            
-21 PD State                | -1            | -2            | -2           | -2            | -2           
-22 FVG State               | 0             | 2             | 1            | 2             | 1            
-23 Tactical Trend Score    | 95.5          | 87.5          | 97.9         | 91.4          | 90.8         
-24 Tactical Breakout Score | -0.987        | -1.94         | 7.17         | -1.94         | 13.8         
-25 Tactical MeanRev Score  | -20.8         | -18.9         | -40.4        | -40.3         | -50.4        
-26 Fresh Struct Shift      | 0             | 0             | 0            | 0             | 0            
-27 Verdict State           | 1             | 1             | 1            | 1             | 1            
-28 Momentum State          | -1            | -1            | -1           | -1            | -1           
-29 Signed Conviction       | 2             | 2             | 2            | 2             | 2            
-30 Break Fresh State       | 0             | 0             | 0            | 0             | 0            
-31 Retest Stage            | 0             | 0             | 0            | 1             | 0            
-32 Short MR Struct         | 50            | 50            | 50           | 80            | 50           
-33 Dist To Resistance %    | —             | —             | —            | 0.015         | —            
-34 Zone Count              | 2             | 4             | 3            | 3             | 1            
-35 EMA Trend State         | 1             | 1             | 1            | 1             | 1            
-36 VWAP20                  | 68.0          | 199.3         | 164.0        | 395.4         | 135.3        
-37 Dist To Support %       | 0.364         | 0.146         | 0.123        | 0.098         | 0.377        
-38 Lifecycle Long Score    | 50            | 50            | 50           | 68            | 50           
-39 R1 Above                | —             | —             | —            | 403.5         | —            
-40 R2 Above                | —             | —             | —            | —             | —            
-41 S1 Below                | 43.1          | 170.1         | 144.9        | 358.8         | 86.1         
-42 S2 Below                | —             | —             | —            | 339.0         | —            
-43 Cnt Res Above           | 0             | 0             | 0            | 1             | 0            
-44 Cnt Sup Below           | 1             | 1             | 1            | 2             | 1            
-45 Cnt Res All             | 1             | 3             | 2            | 1             | 0            
-46 Cnt Sup All             | 1             | 1             | 1            | 2             | 1            
-47 Lifecycle Short Score   | 50            | 50            | 50           | 18            | 50           
-48 Winner Dir              | 1             | 1             | 1            | 1             | 1            
-49 Winner Family Code      | 2             | 2             | 2            | 2             | 2            
-50 Winner Margin           | 49.5          | 49.1          | 44.2         | 43.3          | 40.7         
-51 Winner Base Score       | 77.1          | 78.3          | 77.6         | 74.7          | 76.2         
-52 Winner Penalty          | 8             | 10            | 10           | 8             | 10           
-53 Winner Tactical         | 71.8          | 71.3          | 71.5         | 70.2          | 67.9         
-54 Winner Macro            | 100           | 100           | 100          | 60            | 100          
-55 Winner Structure        | 50            | 50            | 50           | 60            | 50           
-56 Winner ADX Fit          | 93            | 93            | 93           | 93            | 93           
-57 Winner Lifecycle        | 50            | 50            | 50           | 68            | 50           
-58 Winner Context Boost    | -1            | 1             | -1           | 4             | -1           
-59 Winner Family Edge      | 31.5          | 30.2          | 35.8         | 33.4          | 36.5         
+TV Column                  | #1 NVDAUSDT.P | #2 INTCUSDT.P | #3 MRVLUSDT.P | #4 ARMUSDT.P | #5 TSLAUSDT.P
+---------------------------+---------------+---------------+---------------+--------------+--------------
+01 Signal Dir              | 0             | 1             | 0             | 0            | 0            
+02 Best Setup Code         | 2             | 2             | 2             | 2            | 2            
+03 Best Score              | 69.6          | 68.6          | 68.2          | 67.1         | 66.5         
+04 Final Long Score        | 69.6          | 68.6          | 68.2          | 67.1         | 66.5         
+05 Final Short Score       | 30.0          | 19.2          | 26.0          | 21.9         | 23.7         
+06 Long Continuation       | 79.6          | 76.6          | 78.2          | 77.1         | 74.5         
+07 Short Continuation      | 37.8          | 36.7          | 36.0          | 37.3         | 36.5         
+08 Long MeanRev            | 44.7          | 46.0          | 41.3          | 46.4         | 41.0         
+09 Short MeanRev           | 58.0          | 47.2          | 54.0          | 49.9         | 55.7         
+10 Conviction State        | 2             | 2             | 2             | 2            | 2            
+11 Trend Dir               | 1             | 1             | 1             | 1            | 1            
+12 Macro Dir 1D            | 1             | 1             | 1             | 1            | 0            
+13 Position State          | 0             | 0             | 0             | 0            | 0            
+14 Breakout Dir            | 0             | 0             | 0             | 0            | 0            
+15 Retest Dir              | 0             | 0             | 0             | 0            | 0            
+16 ADX                     | 34.2          | 32.9          | 30.9          | 43.6         | 41.4         
+17 Rel Volume              | 0.197         | 0.299         | 0.378         | 0.006669     | 0.139        
+18 Dist Fast EMA ATR       | 1.12          | 0.567         | 1.37          | 0.650        | 1.20         
+19 Sweep Dir               | 0             | 0             | 0             | 0            | 0            
+20 Displacement Dir        | 0             | 0             | 0             | 0            | 0            
+21 PD State                | -2            | -1            | -2            | -2           | -2           
+22 FVG State               | 2             | 0             | 2             | 1            | 2            
+23 Tactical Trend Score    | 86.1          | 91.0          | 88.8          | 94.7         | 89.4         
+24 Tactical Breakout Score | 7.56          | 0.896         | 17.7          | 5.96         | 0.428        
+25 Tactical MeanRev Score  | -35.2         | -18.3         | -51.9         | -31.9        | -41.1        
+26 Fresh Struct Shift      | 0             | 0             | 0             | 0            | 0            
+27 Verdict State           | 1             | 1             | 1             | 1            | 1            
+28 Momentum State          | 1             | 0             | 0             | -1           | 0            
+29 Signed Conviction       | 2             | 2             | 2             | 2            | 2            
+30 Break Fresh State       | 0             | 0             | 0             | 0            | 0            
+31 Retest Stage            | 0             | 0             | 0             | 0            | 1            
+32 Short MR Struct         | 100           | 50            | 50            | 50           | 80           
+33 Dist To Resistance %    | 0.005073      | —             | —             | —            | 0.013        
+34 Zone Count              | 5             | 2             | 1             | 2            | 3            
+35 EMA Trend State         | 1             | 1             | 1             | 1            | 1            
+36 VWAP20                  | 199.3         | 68.1          | 135.4         | 164.1        | 395.5        
+37 Dist To Support %       | 0.150         | 0.365         | 0.379         | —            | 0.099        
+38 Lifecycle Long Score    | 50            | 50            | 50            | 50           | 68           
+39 R1 Above                | 201.1         | —             | —             | —            | 403.5        
+40 R2 Above                | —             | —             | —             | —            | —            
+41 S1 Below                | 170.1         | 43.1          | 86.1          | —            | 358.8        
+42 S2 Below                | —             | —             | —             | —            | 339.0        
+43 Cnt Res Above           | 1             | 0             | 0             | 0            | 1            
+44 Cnt Sup Below           | 1             | 1             | 1             | 0            | 2            
+45 Cnt Res All             | 4             | 1             | 0             | 2            | 1            
+46 Cnt Sup All             | 1             | 1             | 1             | 0            | 2            
+47 Lifecycle Short Score   | 50            | 50            | 50            | 50           | 18           
+48 Winner Dir              | 1             | 1             | 1             | 1            | 1            
+49 Winner Family Code      | 2             | 2             | 2             | 2            | 2            
+50 Winner Margin           | 39.6          | 49.4          | 42.2          | 45.2         | 42.8         
+51 Winner Base Score       | 79.6          | 76.6          | 78.2          | 77.1         | 74.5         
+52 Winner Penalty          | 10            | 8             | 10            | 10           | 8            
+53 Winner Tactical         | 70.5          | 71.0          | 67.7          | 70.8         | 69.7         
+54 Winner Macro            | 100           | 100           | 100           | 100          | 60           
+55 Winner Structure        | 70            | 50            | 50            | 50           | 60           
+56 Winner ADX Fit          | 93            | 93            | 93            | 93           | 93           
+57 Winner Lifecycle        | 50            | 50            | 50            | 50           | 68           
+58 Winner Context Boost    | 1             | -1            | 1             | -1           | 4            
+59 Winner Family Edge      | 34.9          | 30.6          | 36.9          | 30.7         | 33.5         
