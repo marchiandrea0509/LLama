@@ -153,6 +153,7 @@ Use this file when you want to remember:
 - Provides winner screenshots for:
   - 4H
   - 1D
+- Uses the TradingView `Openclaw-structure` chart layout (`0ZPSKaZ4`) for both screenshots.
 - Returns the screener table plus media paths for those screenshots.
 - Use the explicit refresh variant when you want a forced new rerun.
 

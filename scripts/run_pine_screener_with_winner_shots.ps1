@@ -9,6 +9,8 @@ $ArtifactDir = 'C:\Users\anmar\.openclaw\workspace-llama\artifacts\pine_screener
 $LogPath = Join-Path $ArtifactDir 'capture.log'
 $LatestTablePath = Join-Path $ArtifactDir 'latest_table.txt'
 $ManifestPath = Join-Path $ArtifactDir 'latest_manifest.json'
+$PreferredLayout = 'Openclaw-structure'
+$PreferredChartUrl = 'https://www.tradingview.com/chart/0ZPSKaZ4/'
 
 function Get-NodePath {
     $cmd = Get-Command node -ErrorAction SilentlyContinue
@@ -72,7 +74,7 @@ function Try-Capture {
     )
 
     $started = Get-Date
-    $result = Invoke-NodeWithTimeout -ScriptPath $CaptureScript -Arguments @('--symbol', $Winner, '--timeframe', $Timeframe, '--outdir', $ArtifactDir, '--log', $LogPath) -TimeoutSeconds 180
+    $result = Invoke-NodeWithTimeout -ScriptPath $CaptureScript -Arguments @('--symbol', $Winner, '--timeframe', $Timeframe, '--outdir', $ArtifactDir, '--log', $LogPath, '--layout', $PreferredLayout, '--chartUrl', $PreferredChartUrl) -TimeoutSeconds 180
 
     if ((Test-Path $ExpectedImagePath) -and ((Get-Item $ExpectedImagePath).LastWriteTime -ge $started.AddSeconds(-2))) {
         return $true
@@ -164,6 +166,8 @@ try {
         image1D = $image1D
         sourceJson = $latestJson.FullName
         sourceText = $textPath
+        layout = $PreferredLayout
+        chartUrl = $PreferredChartUrl
     }
     $manifest | ConvertTo-Json -Depth 5 | Set-Content -Path $ManifestPath -Encoding UTF8
 
