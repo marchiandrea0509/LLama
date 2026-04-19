@@ -171,23 +171,21 @@ Use this file for repeatable tasks that should be handled the same way every tim
 **Action**
 1. Use `exec` to run:
    - `powershell -ExecutionPolicy Bypass -File C:\Users\anmar\.openclaw\workspace-llama\scripts\run_pine_screener_with_winner_shots.ps1`
-2. Then read these files:
-   - `C:\Users\anmar\.openclaw\workspace-llama\artifacts\pine_screener_winner\latest_manifest.json`
-   - the image at `image4H` from that manifest
-   - the image at `image1D` from that manifest
-3. Use `read` on the two image paths from the manifest in the same turn so they become real message attachments.
+2. Then use `exec` to run:
+   - `powershell -ExecutionPolicy Bypass -File C:\Users\anmar\.openclaw\workspace-llama\scripts\get_latest_winner_media_refs.ps1`
+3. Parse the JSON output.
 4. Reply in the current chat with:
    - only the table output from the wrapper
-   - plus the two screenshot attachments from those `read` calls
+   - then the two `MEDIA:./...` lines from `media4H` and `media1D`
    - no extra commentary
 
 **Reply format**
-- The text body must be only the table.
-- Attach the winner 4H screenshot and the winner 1D screenshot via `read`.
+- The text body must be only the table followed by the two `MEDIA:./...` lines.
+- Use `MEDIA:./relative/path.png` for the 4H and 1D winner screenshots.
 - Do not add intro text.
 - Do not add labels like `Winner:` or `Attached:`.
 - Do not explain the pipeline.
-- If you did not successfully `read` both image files in the same turn, do not claim they are attached.
+- If you do not have valid `MEDIA:./...` lines for both images, reply exactly: `Pine screener winner screenshot failed.`
 
 **Fallback**
 - `Pine screener winner screenshot failed.`
@@ -207,16 +205,16 @@ Use this file for repeatable tasks that should be handled the same way every tim
 
 **Action**
 1. Use `exec` to run:
-   - `powershell -ExecutionPolicy Bypass -File C:\Users\anmar\.openclaw\workspace-llama\scripts\get_latest_winner_screenshots.ps1`
+   - `powershell -ExecutionPolicy Bypass -File C:\Users\anmar\.openclaw\workspace-llama\scripts\get_latest_winner_media_refs.ps1`
 2. Parse the JSON output.
-3. Use `read` on `image4H` and `image1D` in the same turn.
-4. Reply with only a minimal caption:
+3. Reply with only:
    - `<winner> 4H and 1D`
+   - then the two `MEDIA:./...` lines from `media4H` and `media1D`
 
 **Reply format**
-- Attach only the two images.
 - Keep the text body minimal.
-- Do not claim attachments unless both `read` calls succeeded.
+- Use only the winner line plus the two `MEDIA:./...` lines.
+- Do not claim attachments unless both media lines are present.
 
 **Fallback**
 - `Winner screenshots unavailable.`

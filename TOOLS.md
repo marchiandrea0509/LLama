@@ -40,6 +40,7 @@ Things like:
 - `scripts/run_pine_screener_export.ps1` — reruns `workspace\\tradingview\\scripts\\pine_screener_export.js` and returns only the fresh text table, or `Pine screener export failed.`
 - `scripts/run_pine_screener_with_winner_shots.ps1` — reruns the screener, selects the top winner, captures 4H + 1D screenshots, and writes a manifest under `artifacts\\pine_screener_winner\\`
 - `scripts/get_latest_winner_screenshots.ps1` — returns the latest winner name plus 4H/1D screenshot paths from the manifest, or `Winner screenshots unavailable.`
+- `scripts/get_latest_winner_media_refs.ps1` — returns the winner plus safe `MEDIA:./artifacts/...` lines for 4H/1D screenshots so Discord can render them reliably
 - `workspace\\tradingview\\scripts\\pine_screener_export.js` — full TradingView Pine Screener export pipeline (CSV/JSON/PNG/MD/TXT artifacts)
 - `workspace\\tradingview\\scripts\\capture_live.js` — captures a live TradingView chart screenshot for a chosen symbol/timeframe
 - `TASKBOOK.md` — known task playbook; read this when a request matches a repeatable task

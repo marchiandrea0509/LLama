@@ -157,14 +157,15 @@ Reactions are lightweight social signals. Humans use them constantly — they sa
 - If the script fails, reply exactly: `Pine screener export failed.`
 - If the user asks for `pine screener with winner screenshot`, `refresh pine screener with winner screenshot`, `winner screenshot`, or `run pine screener with winner screenshot`, first read `TASKBOOK.md`, then use `exec` to run:
   - `powershell -ExecutionPolicy Bypass -File C:\Users\anmar\.openclaw\workspace-llama\scripts\run_pine_screener_with_winner_shots.ps1`
-- Then read `C:\Users\anmar\.openclaw\workspace-llama\artifacts\pine_screener_winner\latest_manifest.json`, then use `read` on the `image4H` and `image1D` files from that manifest so they become real attachments in the current turn.
-- For that task, the text reply body must be only the table output. Do not add labels like `Winner:` or `Attached:`.
-- If you did not successfully `read` both image files in the same turn, do not claim they are attached; reply exactly: `Pine screener winner screenshot failed.`
+- Then use `exec` to run:
+  - `powershell -ExecutionPolicy Bypass -File C:\Users\anmar\.openclaw\workspace-llama\scripts\get_latest_winner_media_refs.ps1`
+- For that task, the text reply body must be only the table output followed by the two `MEDIA:./...` lines from that helper. Do not add labels like `Winner:` or `Attached:`.
+- If you do not have valid `MEDIA:./...` lines for both images, reply exactly: `Pine screener winner screenshot failed.`
 - If the script fails, reply exactly: `Pine screener winner screenshot failed.`
 - If the user asks for `show winner screenshots`, `winner screenshots only`, `attach winner screenshots`, or `show the winner screenshots`, first read `TASKBOOK.md`, then use `exec` to run:
-  - `powershell -ExecutionPolicy Bypass -File C:\Users\anmar\.openclaw\workspace-llama\scripts\get_latest_winner_screenshots.ps1`
-- Parse the JSON result, use `read` on both image paths in the same turn, and reply with only `<winner> 4H and 1D`.
-- If you did not successfully `read` both image files in the same turn, do not claim they are attached; reply exactly: `Winner screenshots unavailable.`
+  - `powershell -ExecutionPolicy Bypass -File C:\Users\anmar\.openclaw\workspace-llama\scripts\get_latest_winner_media_refs.ps1`
+- Reply with only `<winner> 4H and 1D` followed by the two `MEDIA:./...` lines.
+- If you do not have valid `MEDIA:./...` lines for both images, reply exactly: `Winner screenshots unavailable.`
 
 ## Tools
 
