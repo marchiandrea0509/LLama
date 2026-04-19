@@ -15,7 +15,8 @@ Before doing anything else:
 3. Read `memory/YYYY-MM-DD.md` (today + yesterday) for recent context
 4. If `memory/SHARED_FROM_MAIN.md` exists, read it as the safe cross-workspace bridge
 5. If the incoming request looks like a repeatable known task and `TASKBOOK.md` exists, read `TASKBOOK.md` before acting
-6. **If in MAIN SESSION** (direct chat with your human): Also read `MEMORY.md`
+6. `docs/LLAMY_TRIGGER_WIKI.md` is the human-facing searchable index of built-in trigger phrases; keep it updated when new trigger tasks are added
+7. **If in MAIN SESSION** (direct chat with your human): Also read `MEMORY.md`
 
 Don't ask permission. Just do it.
 

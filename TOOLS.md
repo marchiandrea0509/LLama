@@ -44,6 +44,7 @@ Things like:
 - `workspace\\tradingview\\scripts\\pine_screener_export.js` — full TradingView Pine Screener export pipeline (CSV/JSON/PNG/MD/TXT artifacts)
 - `workspace\\tradingview\\scripts\\capture_live.js` — captures a live TradingView chart screenshot for a chosen symbol/timeframe
 - `TASKBOOK.md` — known task playbook; read this when a request matches a repeatable task
+- `docs/LLAMY_TRIGGER_WIKI.md` — human-facing searchable wiki of Llamy trigger phrases and what they do
 
 ## Why Separate?
 
