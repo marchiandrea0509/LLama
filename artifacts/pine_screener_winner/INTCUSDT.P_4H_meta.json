@@ -1,0 +1,22 @@
+{
+  "capturedAt": "2026-04-19T05:58:35.871Z",
+  "symbol": "INTCUSDT.P",
+  "timeframe": "4H",
+  "layout": "default",
+  "preset": "standard",
+  "width": 1600,
+  "height": 1000,
+  "scale": 1,
+  "fixedZoom": true,
+  "profile": "profile",
+  "ready": false,
+  "url": "https://www.tradingview.com/chart/?symbol=INTCUSDT.P&interval=240",
+  "shotPath": "C:\\Users\\anmar\\.openclaw\\workspace-llama\\artifacts\\pine_screener_winner\\INTCUSDT.P_4H.png",
+  "panelPath": null,
+  "market": {
+    "title": "INTCUSDT.P 67.95 ▼ −0.09% Openclaw-structure",
+    "symbol": "INTCUSDT.P",
+    "price": 67.95,
+    "changePct": null
+  }
+}
