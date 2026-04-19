@@ -9,6 +9,9 @@ Use this file for repeatable tasks that should be handled the same way every tim
 - For fragile status lookups, prefer a wrapper script if one exists.
 - If the task says "reply with exactly X", the final reply must be exactly `X`.
 - If a known task fails, say briefly that it failed instead of explaining tools in the abstract.
+- For trigger-based known tasks, do not narrate workflow or tool usage.
+- Never mention `TASKBOOK.md`, scripts, polling, background runs, or internal execution steps in the user-visible reply.
+- For known tasks, the final reply must be only the task result or the exact fallback line.
 
 ## Known tasks
 
@@ -218,6 +221,32 @@ Use this file for repeatable tasks that should be handled the same way every tim
 
 **Fallback**
 - `Winner screenshots unavailable.`
+
+### 10) Pre-compaction memory flush
+
+**Trigger examples**
+- `Pre-compaction memory flush. Store durable memories now ...`
+
+**Interpretation rule**
+- Treat this as a maintenance turn, not a normal user conversation.
+- Do not get stuck rereading the same file repeatedly.
+- Read the current daily memory file at most once.
+- Only store a memory if there is a genuinely durable new fact from the recent conversation that is worth keeping.
+- If there is nothing clearly worth keeping, reply exactly: `NO_REPLY`
+
+**Action**
+1. If `memory/YYYY-MM-DD.md` does not exist, create it only if there is a real durable memory to save.
+2. If there is a real durable memory to save, append it once.
+3. Prefer a single append operation via `exec`/PowerShell `Add-Content` for append-only writes.
+4. Do not loop between `read` and `write` decisions.
+5. Do not explain your reasoning to the user.
+
+**Reply format**
+- If nothing durable should be saved, reply exactly: `NO_REPLY`
+- If a save was made successfully, also reply exactly: `NO_REPLY`
+
+**Fallback**
+- `NO_REPLY`
 
 ## Template for future tasks
 

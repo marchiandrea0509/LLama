@@ -10,6 +10,81 @@ $LogPath = Join-Path $ArtifactDir 'capture.log'
 $LatestTablePath = Join-Path $ArtifactDir 'latest_table.txt'
 $ManifestPath = Join-Path $ArtifactDir 'latest_manifest.json'
 
+function Get-NodePath {
+    $cmd = Get-Command node -ErrorAction SilentlyContinue
+    if (-not $cmd) {
+        throw 'node executable not found in PATH'
+    }
+    return $cmd.Source
+}
+
+function Invoke-NodeWithTimeout {
+    param(
+        [string]$ScriptPath,
+        [string[]]$Arguments,
+        [int]$TimeoutSeconds = 180
+    )
+
+    $node = Get-NodePath
+    $stdoutPath = Join-Path $env:TEMP ("oc-node-out-" + [guid]::NewGuid().ToString() + '.txt')
+    $stderrPath = Join-Path $env:TEMP ("oc-node-err-" + [guid]::NewGuid().ToString() + '.txt')
+
+    try {
+        $argList = @($ScriptPath) + $Arguments
+        $proc = Start-Process -FilePath $node -ArgumentList $argList -NoNewWindow -PassThru -RedirectStandardOutput $stdoutPath -RedirectStandardError $stderrPath
+        $finished = $proc.WaitForExit($TimeoutSeconds * 1000)
+
+        if (-not $finished) {
+            try { Stop-Process -Id $proc.Id -Force -ErrorAction SilentlyContinue } catch {}
+            return [pscustomobject]@{
+                ExitCode = -1
+                TimedOut = $true
+                StdOut = ''
+                StdErr = 'Timed out'
+            }
+        }
+
+        return [pscustomobject]@{
+            ExitCode = $proc.ExitCode
+            TimedOut = $false
+            StdOut = if (Test-Path $stdoutPath) { Get-Content $stdoutPath -Raw } else { '' }
+            StdErr = if (Test-Path $stderrPath) { Get-Content $stderrPath -Raw } else { '' }
+        }
+    }
+    finally {
+        Remove-Item $stdoutPath, $stderrPath -Force -ErrorAction SilentlyContinue
+    }
+}
+
+function Try-RunExport {
+    $result = Invoke-NodeWithTimeout -ScriptPath $ExportScript -Arguments @() -TimeoutSeconds 240
+    if ($result.ExitCode -eq 0) {
+        return $true
+    }
+    return $false
+}
+
+function Try-Capture {
+    param(
+        [string]$Winner,
+        [string]$Timeframe,
+        [string]$ExpectedImagePath
+    )
+
+    $started = Get-Date
+    $result = Invoke-NodeWithTimeout -ScriptPath $CaptureScript -Arguments @('--symbol', $Winner, '--timeframe', $Timeframe, '--outdir', $ArtifactDir, '--log', $LogPath) -TimeoutSeconds 180
+
+    if ((Test-Path $ExpectedImagePath) -and ((Get-Item $ExpectedImagePath).LastWriteTime -ge $started.AddSeconds(-2))) {
+        return $true
+    }
+
+    if ($result.ExitCode -eq 0 -and (Test-Path $ExpectedImagePath)) {
+        return $true
+    }
+
+    return $false
+}
+
 try {
     New-Item -ItemType Directory -Path $ArtifactDir -Force | Out-Null
 
@@ -20,8 +95,11 @@ try {
         throw "Capture script not found: $CaptureScript"
     }
 
-    & node $ExportScript 2>&1 | Out-String | Out-Null
-    if ($LASTEXITCODE -ne 0) {
+    $exportOk = $false
+    for ($i = 0; $i -lt 2 -and -not $exportOk; $i++) {
+        $exportOk = Try-RunExport
+    }
+    if (-not $exportOk) {
         throw 'pine_screener_export.js failed'
     }
 
@@ -52,18 +130,24 @@ try {
 
     Copy-Item -Path $textPath -Destination $LatestTablePath -Force
 
-    $capture4H = & node $CaptureScript --symbol $winner --timeframe 4H --outdir $ArtifactDir --log $LogPath 2>&1 | Out-String
-    if ($LASTEXITCODE -ne 0) {
+    $image4H = Join-Path $ArtifactDir ($winner + '_4H.png')
+    $image1D = Join-Path $ArtifactDir ($winner + '_1D.png')
+
+    $capture4HOk = $false
+    for ($i = 0; $i -lt 2 -and -not $capture4HOk; $i++) {
+        $capture4HOk = Try-Capture -Winner $winner -Timeframe '4H' -ExpectedImagePath $image4H
+    }
+    if (-not $capture4HOk) {
         throw "4H capture failed for $winner"
     }
 
-    $capture1D = & node $CaptureScript --symbol $winner --timeframe 1D --outdir $ArtifactDir --log $LogPath 2>&1 | Out-String
-    if ($LASTEXITCODE -ne 0) {
+    $capture1DOk = $false
+    for ($i = 0; $i -lt 2 -and -not $capture1DOk; $i++) {
+        $capture1DOk = Try-Capture -Winner $winner -Timeframe '1D' -ExpectedImagePath $image1D
+    }
+    if (-not $capture1DOk) {
         throw "1D capture failed for $winner"
     }
-
-    $image4H = Join-Path $ArtifactDir ($winner + '_4H.png')
-    $image1D = Join-Path $ArtifactDir ($winner + '_1D.png')
 
     if (-not (Test-Path $image4H)) {
         throw "Missing 4H screenshot: $image4H"

@@ -135,6 +135,16 @@ Reactions are lightweight social signals. Humans use them constantly — they sa
 
 ### ✅ Known task shortcuts
 
+**Execution discipline for known tasks**
+
+- For trigger-based known tasks, do the task silently.
+- Do **not** explain your workflow.
+- Do **not** mention `TASKBOOK.md`, tools, scripts, polling, background runs, or internal steps.
+- Do **not** say things like `Let me do that`, `I need to poll`, `The command is running`, or similar process narration.
+- Your final user-visible message must be only:
+  - the exact result format defined by the task, or
+  - the exact fallback line defined by the task
+
 - If the user asks for `usage status`, `openclaw usage`, `show usage`, or `Run exactly: openclaw status --usage`, first read `TASKBOOK.md`, then use `exec` to run:
   - `powershell -ExecutionPolicy Bypass -File C:\Users\anmar\.openclaw\workspace-llama\scripts\get_openclaw_usage.ps1`
 - For that usage task, reply with only the script output.
