@@ -23,6 +23,8 @@
 - Discord Channel ID: 1494983758745698417
 - Discord Mode: apply
 - Discord Status: applied
+- Mentor Thread: Llama-lab (`1496002959660552252`) bound to agent `llama-lab`
+- Mentor Policy: keep `#llama` on `llama` only; use `Llama-lab` for GPT-5.4 coaching on the same workspace
 
 ## Bootstrap checklist
 
