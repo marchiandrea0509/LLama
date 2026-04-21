@@ -31,7 +31,7 @@ function Write-ManifestFromFiles {
 
 function Try-UseValidManifest {
     if (-not (Test-Path $ManifestPath)) {
-        return $false
+        return $null
     }
 
     $manifest = Get-Content $ManifestPath -Raw | ConvertFrom-Json
@@ -42,16 +42,15 @@ function Try-UseValidManifest {
         (Test-Path $manifest.image4H) -and
         (Test-Path $manifest.image1D)
     ) {
-        Get-Content ([string]$manifest.tablePath) -Raw
-        return $true
+        return (Get-Content ([string]$manifest.tablePath) -Raw)
     }
 
-    return $false
+    return $null
 }
 
 function Try-RebuildFromArtifacts {
     if (-not (Test-Path $LatestTablePath)) {
-        return $false
+        return $null
     }
 
     $files4H = Get-ChildItem -Path $ArtifactDir -Filter '*_4H_Openclaw-structure.png' -File -ErrorAction SilentlyContinue |
@@ -61,20 +60,23 @@ function Try-RebuildFromArtifacts {
         $image1D = Join-Path $ArtifactDir ($winner + '_1D_Openclaw-structure.png')
         if (Test-Path $image1D) {
             Write-ManifestFromFiles -Winner $winner -Image4H $file4H.FullName -Image1D $image1D
-            Get-Content $LatestTablePath -Raw
-            return $true
+            return (Get-Content $LatestTablePath -Raw)
         }
     }
 
-    return $false
+    return $null
 }
 
 try {
-    if (Try-UseValidManifest) {
+    $table = Try-UseValidManifest
+    if ($null -ne $table -and $table -ne '') {
+        $table
         exit 0
     }
 
-    if (Try-RebuildFromArtifacts) {
+    $table = Try-RebuildFromArtifacts
+    if ($null -ne $table -and $table -ne '') {
+        $table
         exit 0
     }
 
