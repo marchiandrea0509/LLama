@@ -47,6 +47,16 @@ Things like:
 - `TASKBOOK.md` — known task playbook; read this when a request matches a repeatable task
 - `docs/LLAMY_TRIGGER_WIKI.md` — human-facing searchable wiki of Llamy trigger phrases and what they do
 
+## Pine screener artifact hygiene
+
+- Keep the active winner package at `artifacts\\pine_screener_winner\\` top level:
+  - `latest_manifest.json`
+  - `latest_table.txt`
+  - current `*_Openclaw-structure.png` files and matching `_meta.json`
+  - `capture.log` when it is still useful for the latest capture run
+- Move stale test logs and pre-layout / superseded screenshots into `artifacts\\pine_screener_winner\\archive\\YYYY-MM-DD_cleanup\\` instead of leaving them beside the live package.
+- Prefer preserving the files referenced by `latest_manifest.json`; do not archive or delete those unless replacing the manifest in the same change.
+
 ## Why Separate?
 
 Skills are shared. Your setup is yours. Keeping them apart means you can update skills without losing your notes, and share skills without leaking your infrastructure.

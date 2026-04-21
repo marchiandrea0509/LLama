@@ -28,13 +28,13 @@
 
 ## Bootstrap checklist
 
-- [ ] Agent registered in OpenClaw CLI
-- [ ] Workspace path verified
-- [ ] Standard OpenClaw workspace files present or intentionally skipped
-- [ ] PROJECT_STATE.md created
-- [ ] SESSION_START.txt created
-- [ ] Discord binding prepared, applied, or explicitly not requested
-- [ ] Validation checklist passed
+- [x] Agent registered in OpenClaw CLI
+- [x] Workspace path verified
+- [x] Standard OpenClaw workspace files present or intentionally skipped
+- [x] PROJECT_STATE.md created
+- [x] SESSION_START.txt created
+- [x] Discord binding prepared, applied, or explicitly not requested
+- [x] Validation checklist passed
 
 ## Current focus
 
@@ -53,7 +53,6 @@ Wire the Llama model as the main agent for this room for simple tasks or mainten
 
 ## Next actions
 
-- none
 - none
 
 ## Notes

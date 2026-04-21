@@ -15,7 +15,8 @@ Use this file when you want to remember:
 - `llamy room status` → `#llama` room/session health
 - `Pine screener` → latest cached Pine screener table
 - `refresh pine screener` → fresh Pine screener export
-- `pine screener with winner screenshot` → fresh screener + winner screenshots (4H and 1D)
+- `pine screener with winner screenshot` → latest valid winner package + winner screenshots (4H and 1D)
+- `refresh pine screener with winner screenshot` → force a fresh screener run + winner screenshots
 - `show winner screenshots` → latest stored winner screenshots only
 
 ---

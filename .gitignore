@@ -1,0 +1,11 @@
+# Local OpenClaw runtime state
+.openclaw/
+
+# OS/editor noise
+Thumbs.db
+Desktop.ini
+.DS_Store
+*.tmp
+*.temp
+*.bak
+*.orig
