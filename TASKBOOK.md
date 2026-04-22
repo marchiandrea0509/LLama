@@ -226,7 +226,46 @@ Use this file for repeatable tasks that should be handled the same way every tim
 **Fallback**
 - `Winner screenshots unavailable.`
 
-### 10) Pre-compaction memory flush
+### 10) Manual llama screener dispatch
+
+**Trigger examples**
+- `trigger llama screener`
+- `run llama screener now`
+- `send llama screener`
+- `refresh llama screener now`
+
+**Interpretation rule**
+- Treat these phrases as a request made from the `#llama` room to run a fresh screener dispatch now.
+- Do not use `cron run` or create a one-shot cron job for this manual path.
+- First check that the configured Qwen/Ollama backend is reachable.
+- Then build the final delivery body locally and forward it to the `#llama-screener` room session.
+- The current room only gets a short acknowledgement.
+
+**Action**
+1. Use `exec` to run:
+   - `powershell -ExecutionPolicy Bypass -File C:\Users\anmar\.openclaw\workspace-llama\scripts\test_qwen_backend.ps1`
+2. If step 1 fails, reply exactly:
+   - `Qwen host offline. Not sent.`
+3. Use `exec` to run:
+   - `powershell -ExecutionPolicy Bypass -File C:\Users\anmar\.openclaw\workspace-llama\scripts\get_llama_screener_cron_delivery.ps1`
+4. If step 3 fails or stdout is empty, reply exactly:
+   - `Llama screener dispatch failed.`
+5. Use `sessions_send` to send this message to session key `agent:llama:discord:channel:1495366850450558986`:
+   - `Reply with exactly the following content and nothing else:`
+   - then the full stdout from step 3
+6. If `sessions_send` succeeds, reply exactly:
+   - `Sent to #llama-screener.`
+
+**Reply format**
+- Reply in the current chat with only the acknowledgement or fallback line.
+- Do not include workflow explanation.
+
+**Fallback**
+- `Qwen host offline. Not sent.`
+- `Llama screener dispatch failed.`
+- `I couldn't send llama screener right now.`
+
+### 11) Pre-compaction memory flush
 
 **Trigger examples**
 - `Pre-compaction memory flush. Store durable memories now ...`

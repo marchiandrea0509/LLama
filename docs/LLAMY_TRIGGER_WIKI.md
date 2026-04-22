@@ -18,6 +18,7 @@ Use this file when you want to remember:
 - `pine screener with winner screenshot` → latest valid winner package + winner screenshots (4H and 1D)
 - `refresh pine screener with winner screenshot` → force a fresh screener run + winner screenshots
 - `show winner screenshots` → latest stored winner screenshots only
+- `trigger llama screener` → queue a fresh one-shot run from `#llama` and deliver output to `#llama-screener`
 
 ---
 
@@ -170,6 +171,58 @@ Use this file when you want to remember:
 ---
 
 ## 8) Winner screenshots only
+
+**Primary trigger**
+- `show winner screenshots`
+
+**Also recognized**
+- `winner screenshots only`
+- `attach winner screenshots`
+- `show the winner screenshots`
+
+**What it does**
+- Returns only the latest stored winner screenshots from the most recent successful screener-with-screenshots run.
+- Does **not** rerun the screener.
+
+**Reply style**
+- Minimal winner line.
+- Then two `MEDIA:./...` lines.
+
+**Failure line**
+- `Winner screenshots unavailable.`
+
+---
+
+## 9) Manual llama screener dispatch
+
+**Primary trigger**
+- `trigger llama screener`
+
+**Also recognized**
+- `run llama screener now`
+- `send llama screener`
+- `refresh llama screener now`
+
+**What it does**
+- Runs a fresh screener dispatch from the `#llama` room.
+- Pings the configured Qwen backend first so it can fail fast if that PC is asleep/off.
+- Builds the final delivery body locally.
+- Forwards the result to `#llama-screener`.
+- Avoids relying on the flaky manual cron path.
+
+**Reply style**
+- Current room gets a short acknowledgement only.
+- The screener table + screenshots land in `#llama-screener`.
+
+**Acknowledgement**
+- `Sent to #llama-screener.`
+
+**Fast-fail line**
+- `Qwen host offline. Not sent.`
+
+---
+
+## 10) Winner screenshots only
 
 **Primary trigger**
 - `show winner screenshots`
