@@ -141,9 +141,23 @@ Reactions are lightweight social signals. Humans use them constantly — they sa
 - Do **not** explain your workflow.
 - Do **not** mention `TASKBOOK.md`, tools, scripts, polling, background runs, or internal steps.
 - Do **not** say things like `Let me do that`, `I need to poll`, `The command is running`, or similar process narration.
+- Never output chain-of-thought, planning text, or policy commentary for a known task.
 - Your final user-visible message must be only:
   - the exact result format defined by the task, or
   - the exact fallback line defined by the task
+
+**Highest-priority exact shortcut**
+
+- If the user says `trigger llama screener`, `run llama screener now`, `send llama screener`, or `refresh llama screener now`:
+  - do not improvise
+  - do not explain
+  - do not run `scripts/get_llama_screener_cron_delivery.ps1`
+  - do not answer with the screener table in `#llama`
+  - first run `scripts/test_qwen_backend.ps1`
+  - if that fails, reply exactly: `Qwen host offline. Not sent.`
+  - otherwise create a one-shot cron job for `llama-fresh` that runs `scripts/run_llama_screener_manual_delivery.ps1`
+  - deliver only to `channel:1495366850450558986` (`#llama-screener`)
+  - acknowledge in the current room with exactly: `Queued for #llama-screener.`
 
 - If the user asks for `usage status`, `openclaw usage`, `show usage`, or `Run exactly: openclaw status --usage`, first read `TASKBOOK.md`, then use `exec` to run:
   - `powershell -ExecutionPolicy Bypass -File C:\Users\anmar\.openclaw\workspace-llama\scripts\get_openclaw_usage.ps1`
