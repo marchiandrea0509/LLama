@@ -1,0 +1,22 @@
+{
+  "capturedAt": "2026-04-22T17:31:26.090Z",
+  "symbol": "PLTRUSDT.P",
+  "timeframe": "4H",
+  "layout": "Openclaw-structure",
+  "preset": "standard",
+  "width": 1600,
+  "height": 1000,
+  "scale": 1,
+  "fixedZoom": true,
+  "profile": "profile-llama-capture",
+  "ready": false,
+  "url": "https://www.tradingview.com/chart/0ZPSKaZ4/?symbol=PLTRUSDT.P&interval=240",
+  "shotPath": "C:\\Users\\anmar\\.openclaw\\workspace-llama\\artifacts\\pine_screener_winner\\PLTRUSDT.P_4H_Openclaw-structure.png",
+  "panelPath": null,
+  "market": {
+    "title": "PLTRUSDT.P 152.16 ▲ +3.12% Openclaw-structure",
+    "symbol": "PLTRUSDT.P",
+    "price": 152.16,
+    "changePct": 3.12
+  }
+}
