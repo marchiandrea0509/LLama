@@ -41,7 +41,8 @@ Things like:
 - `scripts/run_pine_screener_with_winner_shots.ps1` — reruns the screener, selects the top winner, captures 4H + 1D screenshots on the TradingView `Openclaw-structure` chart, and writes layout-specific files plus a manifest under `artifacts\\pine_screener_winner\\`
 - `scripts/get_pine_screener_with_winner_shots_status.ps1` — returns the latest good local winner table immediately if artifacts exist; the explicit refresh phrase is what forces a new rerun
 - `scripts/get_latest_winner_screenshots.ps1` — returns the latest winner name plus 4H/1D screenshot paths from the manifest, or `Winner screenshots unavailable.`
-- `scripts/get_latest_winner_media_refs.ps1` — returns the winner plus safe `MEDIA:./artifacts/...` lines for 4H/1D screenshots so Discord can render them reliably
+- `scripts/get_latest_winner_media_refs.ps1` — returns the winner plus safe `MEDIA:./artifacts/...` lines for direct room/manual usage
+- `scripts/get_llama_screener_cron_delivery.ps1` — Qwen-friendly one-shot wrapper for the llama screener cron; emits the final delivery body directly and mirrors screenshots into the canonical `C:\Users\anmar\.openclaw\workspace\artifacts\llama_screener_winner\` path so OpenClaw can attach them
 - `workspace\\tradingview\\scripts\\pine_screener_export.js` — full TradingView Pine Screener export pipeline (CSV/JSON/PNG/MD/TXT artifacts)
 - `workspace\\tradingview\\scripts\\capture_live.js` — captures a live TradingView chart screenshot for a chosen symbol/timeframe
 - `TASKBOOK.md` — known task playbook; read this when a request matches a repeatable task
@@ -56,6 +57,7 @@ Things like:
   - `capture.log` when it is still useful for the latest capture run
 - Move stale test logs and pre-layout / superseded screenshots into `artifacts\\pine_screener_winner\\archive\\YYYY-MM-DD_cleanup\\` instead of leaving them beside the live package.
 - Prefer preserving the files referenced by `latest_manifest.json`; do not archive or delete those unless replacing the manifest in the same change.
+- For cron delivery, do not send screenshots directly from `workspace-llama`; OpenClaw's default local-media allowlist accepts the canonical `C:\Users\anmar\.openclaw\workspace\...` tree and can reject sibling roots like `workspace-llama`.
 
 ## Why Separate?
 

@@ -21,3 +21,11 @@ Move stale or superseded files into `archive/YYYY-MM-DD_cleanup/`, especially:
 ## Safety rule
 
 Before pruning, check `latest_manifest.json` and keep the files it points to live at the top level.
+
+## Cron delivery note
+
+The live package in this folder is the source of truth for the llama workspace, but cron delivery should mirror the current screenshots into the canonical OpenClaw workspace tree before emitting `MEDIA:` lines:
+
+- `C:\Users\anmar\.openclaw\workspace\artifacts\llama_screener_winner\`
+
+That avoids `LocalMediaAccessError` from OpenClaw's default local-media allowlist, which can reject sibling roots like `workspace-llama` even when the files themselves are valid.
