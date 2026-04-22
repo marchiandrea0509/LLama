@@ -180,6 +180,17 @@ Reactions are lightweight social signals. Humans use them constantly — they sa
   - `powershell -ExecutionPolicy Bypass -File C:\Users\anmar\.openclaw\workspace-llama\scripts\get_latest_winner_media_refs.ps1`
 - Reply with only `<winner> 4H and 1D` followed by the two `MEDIA:./...` lines.
 - If you do not have valid `MEDIA:./...` lines for both images, reply exactly: `Winner screenshots unavailable.`
+- If the user asks for `trigger llama screener`, `run llama screener now`, `send llama screener`, or `refresh llama screener now`, first read `TASKBOOK.md`, then use `exec` to run:
+  - `powershell -ExecutionPolicy Bypass -File C:\Users\anmar\.openclaw\workspace-llama\scripts\test_qwen_backend.ps1`
+- If that backend check fails, reply exactly: `Qwen host offline. Not sent.`
+- Otherwise use `session_status` to get the current time, then use `cron` to add a one-shot job 1-2 minutes ahead with:
+  - `agentId: llama-fresh`
+  - `sessionKey: agent:llama-fresh:cron:manual-llama-screener-<timestamp>`
+  - payload message: `Run \`powershell -ExecutionPolicy Bypass -File C:\Users\anmar\.openclaw\workspace-llama\scripts\run_llama_screener_manual_delivery.ps1\` and return exact stdout only. If the command fails or stdout is empty, reply exactly \`llama does not respond\`. Do not add any extra text.`
+  - delivery target: `channel:1495366850450558986`
+  - `sessionTarget: isolated`
+- If the cron job is queued successfully, reply exactly: `Queued for #llama-screener.`
+- If the cron job cannot be queued, reply exactly: `I couldn't queue llama screener right now.`
 
 ## Tools
 

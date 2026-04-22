@@ -235,10 +235,12 @@ Use this file for repeatable tasks that should be handled the same way every tim
 - `refresh llama screener now`
 
 **Interpretation rule**
-- Treat these phrases as a request made from the `#llama` room to run a fresh screener dispatch now.
-- Do not use `cron run` or create a one-shot cron job for this manual path.
+- Treat these phrases as a request made from the `#llama` room to queue a fresh screener dispatch now.
+- Do not use `cron run` on the live recurring job for this manual path.
+- Do not touch gateway restart/reload/config from this path.
 - First check that the configured Qwen/Ollama backend is reachable.
-- Then build the final delivery body locally and forward it to the `#llama-screener` room session.
+- If it is reachable, create a fresh one-shot cron job 1-2 minutes ahead using the proven `llama-fresh` path and deliver the result to `#llama-screener`.
+- The manual path must force a fresh screener + fresh winner screenshots; do not use the cached status wrapper for this trigger.
 - The current room only gets a short acknowledgement.
 
 **Action**
@@ -246,15 +248,15 @@ Use this file for repeatable tasks that should be handled the same way every tim
    - `powershell -ExecutionPolicy Bypass -File C:\Users\anmar\.openclaw\workspace-llama\scripts\test_qwen_backend.ps1`
 2. If step 1 fails, reply exactly:
    - `Qwen host offline. Not sent.`
-3. Use `exec` to run:
-   - `powershell -ExecutionPolicy Bypass -File C:\Users\anmar\.openclaw\workspace-llama\scripts\get_llama_screener_cron_delivery.ps1`
-4. If step 3 fails or stdout is empty, reply exactly:
-   - `Llama screener dispatch failed.`
-5. Use `sessions_send` to send this message to session key `agent:llama:discord:channel:1495366850450558986`:
-   - `Reply with exactly the following content and nothing else:`
-   - then the full stdout from step 3
-6. If `sessions_send` succeeds, reply exactly:
-   - `Sent to #llama-screener.`
+3. Use `cron add` to create a one-shot job 1-2 minutes ahead with:
+   - `agentId: llama-fresh`
+   - model `ollama/qwen3.5:9b`
+   - payload message: `Run \`powershell -ExecutionPolicy Bypass -File C:\Users\anmar\.openclaw\workspace-llama\scripts\run_llama_screener_manual_delivery.ps1\` and return exact stdout only. If the command fails or stdout is empty, reply exactly \`llama does not respond\`. Do not add any extra text.`
+   - delivery target: `channel:1495366850450558986` (`#llama-screener`)
+4. Set `sessionTarget` to `isolated`.
+5. Use a `llama-fresh` cron session key, not `llama`.
+6. If the job queues successfully, reply exactly:
+   - `Queued for #llama-screener.`
 
 **Reply format**
 - Reply in the current chat with only the acknowledgement or fallback line.
@@ -262,8 +264,7 @@ Use this file for repeatable tasks that should be handled the same way every tim
 
 **Fallback**
 - `Qwen host offline. Not sent.`
-- `Llama screener dispatch failed.`
-- `I couldn't send llama screener right now.`
+- `I couldn't queue llama screener right now.`
 
 ### 11) Pre-compaction memory flush
 

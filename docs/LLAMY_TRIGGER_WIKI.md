@@ -204,18 +204,20 @@ Use this file when you want to remember:
 - `refresh llama screener now`
 
 **What it does**
-- Runs a fresh screener dispatch from the `#llama` room.
+- Queues a fresh screener dispatch from the `#llama` room.
 - Pings the configured Qwen backend first so it can fail fast if that PC is asleep/off.
-- Builds the final delivery body locally.
-- Forwards the result to `#llama-screener`.
-- Avoids relying on the flaky manual cron path.
+- Uses the proven `llama-fresh` one-shot cron path.
+- Forces a fresh screener run and fresh winner screenshots.
+- Sends the actual output to `#llama-screener`.
+- Avoids the flaky `cron run` path on the live recurring job.
+- Avoids gateway reload/restart from the live room.
 
 **Reply style**
-- Current room gets a short acknowledgement only.
+- Current room gets a short queue acknowledgement only.
 - The screener table + screenshots land in `#llama-screener`.
 
 **Acknowledgement**
-- `Sent to #llama-screener.`
+- `Queued for #llama-screener.`
 
 **Fast-fail line**
 - `Qwen host offline. Not sent.`

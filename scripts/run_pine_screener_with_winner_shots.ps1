@@ -83,18 +83,24 @@ function Try-Capture {
     param(
         [string]$Winner,
         [string]$Timeframe,
-        [string]$ExpectedImagePath
+        [string[]]$ExpectedImagePaths
     )
 
     $started = Get-Date
     $result = Invoke-NodeWithTimeout -ScriptPath $CaptureScript -Arguments @('--symbol', $Winner, '--timeframe', $Timeframe, '--outdir', $ArtifactDir, '--log', $LogPath, '--layout', $PreferredLayout, '--chartUrl', $PreferredChartUrl, '--profile', $CaptureProfileName) -TimeoutSeconds 180
 
-    if ((Test-Path $ExpectedImagePath) -and ((Get-Item $ExpectedImagePath).LastWriteTime -ge $started.AddSeconds(-2))) {
-        return $true
+    foreach ($path in $ExpectedImagePaths) {
+        if ((Test-Path $path) -and ((Get-Item $path).LastWriteTime -ge $started.AddSeconds(-2))) {
+            return $true
+        }
     }
 
-    if ($result.ExitCode -eq 0 -and (Test-Path $ExpectedImagePath)) {
-        return $true
+    if ($result.ExitCode -eq 0) {
+        foreach ($path in $ExpectedImagePaths) {
+            if (Test-Path $path) {
+                return $true
+            }
+        }
     }
 
     return $false
@@ -148,12 +154,14 @@ try {
     Copy-Item -Path $textPath -Destination $LatestTablePath -Force
 
     $layoutSuffix = '_' + ($PreferredLayout -replace '[^a-zA-Z0-9-_]', '-')
-    $image4H = Join-Path $ArtifactDir ($winner + '_4H' + $layoutSuffix + '.png')
-    $image1D = Join-Path $ArtifactDir ($winner + '_1D' + $layoutSuffix + '.png')
+    $image4HPreferred = Join-Path $ArtifactDir ($winner + '_4H' + $layoutSuffix + '.png')
+    $image1DPreferred = Join-Path $ArtifactDir ($winner + '_1D' + $layoutSuffix + '.png')
+    $image4HFallback = Join-Path $ArtifactDir ($winner + '_4H.png')
+    $image1DFallback = Join-Path $ArtifactDir ($winner + '_1D.png')
 
     $capture4HOk = $false
     for ($i = 0; $i -lt 2 -and -not $capture4HOk; $i++) {
-        $capture4HOk = Try-Capture -Winner $winner -Timeframe '4H' -ExpectedImagePath $image4H
+        $capture4HOk = Try-Capture -Winner $winner -Timeframe '4H' -ExpectedImagePaths @($image4HPreferred, $image4HFallback)
     }
     if (-not $capture4HOk) {
         throw "4H capture failed for $winner"
@@ -161,18 +169,23 @@ try {
 
     $capture1DOk = $false
     for ($i = 0; $i -lt 2 -and -not $capture1DOk; $i++) {
-        $capture1DOk = Try-Capture -Winner $winner -Timeframe '1D' -ExpectedImagePath $image1D
+        $capture1DOk = Try-Capture -Winner $winner -Timeframe '1D' -ExpectedImagePaths @($image1DPreferred, $image1DFallback)
     }
     if (-not $capture1DOk) {
         throw "1D capture failed for $winner"
     }
 
-    if (-not (Test-Path $image4H)) {
-        throw "Missing 4H screenshot: $image4H"
+    $image4H = if (Test-Path $image4HPreferred) { $image4HPreferred } elseif (Test-Path $image4HFallback) { $image4HFallback } else { $null }
+    $image1D = if (Test-Path $image1DPreferred) { $image1DPreferred } elseif (Test-Path $image1DFallback) { $image1DFallback } else { $null }
+
+    if (-not $image4H) {
+        throw "Missing 4H screenshot for $winner"
     }
-    if (-not (Test-Path $image1D)) {
-        throw "Missing 1D screenshot: $image1D"
+    if (-not $image1D) {
+        throw "Missing 1D screenshot for $winner"
     }
+
+    $actualLayout = if (($image4H -eq $image4HPreferred) -and ($image1D -eq $image1DPreferred)) { $PreferredLayout } else { 'default' }
 
     $manifest = [ordered]@{
         generatedAt = (Get-Date).ToUniversalTime().ToString('o')
@@ -182,7 +195,7 @@ try {
         image1D = $image1D
         sourceJson = $latestJson.FullName
         sourceText = $textPath
-        layout = $PreferredLayout
+        layout = $actualLayout
         chartUrl = $PreferredChartUrl
     }
     $manifest | ConvertTo-Json -Depth 5 | Set-Content -Path $ManifestPath -Encoding UTF8
