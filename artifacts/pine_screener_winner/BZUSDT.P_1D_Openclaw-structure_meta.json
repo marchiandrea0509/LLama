@@ -1,5 +1,5 @@
 {
-  "capturedAt": "2026-04-22T17:52:33.259Z",
+  "capturedAt": "2026-04-22T19:17:48.266Z",
   "symbol": "BZUSDT.P",
   "timeframe": "1D",
   "layout": "Openclaw-structure",
@@ -14,9 +14,9 @@
   "shotPath": "C:\\Users\\anmar\\.openclaw\\workspace-llama\\artifacts\\pine_screener_winner\\BZUSDT.P_1D_Openclaw-structure.png",
   "panelPath": null,
   "market": {
-    "title": "BZUSDT.P 96.06 ▲ +2.19% Openclaw-structure",
+    "title": "BZUSDT.P 96.05 ▲ +2.18% Openclaw-structure",
     "symbol": "BZUSDT.P",
-    "price": 96.06,
-    "changePct": 2.19
+    "price": 96.05,
+    "changePct": 2.18
   }
 }
