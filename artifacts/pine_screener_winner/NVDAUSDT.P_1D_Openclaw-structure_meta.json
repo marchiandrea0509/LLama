@@ -1,5 +1,5 @@
 {
-  "capturedAt": "2026-04-20T04:23:28.406Z",
+  "capturedAt": "2026-04-24T21:17:05.700Z",
   "symbol": "NVDAUSDT.P",
   "timeframe": "1D",
   "layout": "Openclaw-structure",
@@ -9,14 +9,14 @@
   "scale": 1,
   "fixedZoom": true,
   "profile": "profile-llama-capture",
-  "ready": true,
+  "ready": false,
   "url": "https://www.tradingview.com/chart/0ZPSKaZ4/?symbol=NVDAUSDT.P&interval=1D",
   "shotPath": "C:\\Users\\anmar\\.openclaw\\workspace-llama\\artifacts\\pine_screener_winner\\NVDAUSDT.P_1D_Openclaw-structure.png",
   "panelPath": null,
   "market": {
-    "title": "NVDAUSDT.P 199.35 ▲ +0.27% Openclaw-structure",
+    "title": "NVDAUSDT.P 207.88 ▲ +4.1% Openclaw-structure",
     "symbol": "NVDAUSDT.P",
-    "price": 199.35,
-    "changePct": 0.27
+    "price": 207.88,
+    "changePct": 4.1
   }
 }
